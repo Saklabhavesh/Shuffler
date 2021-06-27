@@ -7,7 +7,7 @@ function Box(props) {
 
     let artists = props.artist;
     let naam = props.name;
-    let pic = props.image + ".jpg";
+    let pic = props.image;
     const setSong = useSongStore(state => state.setName)
     if (props.artist.length > 15) {
         artists = props.artist.slice(0, 15) + "...";
@@ -23,7 +23,8 @@ function Box(props) {
             <div className="cards">
                 <div className="cards1">
                     <div className="box">
-                        <img src={`./Songs/${pic}`} alt="image" width="100%" height="100%"></img>
+
+                        <img src={pic} alt="image" width="100%" height="100%"></img>
                     </div>
                     <h2 className="H2">{naam}</h2>
                     <p className="P">{artists}</p>

@@ -392,22 +392,22 @@ h2,h1,p{
     border-radius: 5px;
   }
 /**************Search**************/
-  .searchbar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .btn-1{
-    color: #ffffff;
-    border: none;
-    background: none;
-    margin-left: 5px;
-  }
-  .search{
-    outline: none;
-    width: 300px;
-  }
-  .searchicon{
-    height: 100px;
-  }
-
+.input{
+  height: 80%;
+  width: 100%;
+  border: 0;
+  margin-left: 5%;
+  margin-top: 1%;
+  font-size: 50%;
+  outline: none;
+}
+button{
+  border-radius: 50px;
+  background-color: #ffffff;
+  outline: none;
+  border: 0;
+}
+button:focus{
+  outline: none;
+  border: 0;
+}

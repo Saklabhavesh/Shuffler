@@ -10,11 +10,9 @@ import Loader from "react-loader-spinner";
 function Details(props) {
     const [loading, setLoad]  = useState(true);
     const info = props.location.state;
-    console.log(info);
     const [songs, setsong] = useState([{
         artists: "",
         name: "",
-        year: 0,
     }]);
     useEffect(async () => {
         axios({
@@ -25,7 +23,7 @@ function Details(props) {
             withCredentials: true,
             url: "http://localhost:8000/api/artist",
         }).then((res) => {
-            // console.log(res.data.songs);
+            console.log(res.data);
             setLoad(false);
             setsong(res.data.songs);
         });
@@ -56,7 +54,7 @@ function Details(props) {
                         color="#ffffff"
                         height={100}
                         width={100}
-                        timeout={5000} //5 secs
+                        timeout={5000000000} //5 secs
 
                     />;
                     return (

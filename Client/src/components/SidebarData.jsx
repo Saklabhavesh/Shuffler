@@ -23,6 +23,6 @@ export const SidebarData = [
     {
         title : "Liked songs",
         icon : <FavoriteBorderIcon />,
-        link : "/ext"
+        link : "/likedsongs"
     },
 ];

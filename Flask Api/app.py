@@ -205,7 +205,7 @@ def search():
     reqdata = json.loads(request.data)
     query = reqdata['query']
     dictn = searchfunc(query)
-    return jsonify({"songs":dictn['songs'], "artists":dictn['artist']})
+    return jsonify(json.loads(json.dumps({"songs":dictn['songs'], "artists":dictn['artist']})))
 
 if __name__ == '__main__':
     app.run(debug=True)

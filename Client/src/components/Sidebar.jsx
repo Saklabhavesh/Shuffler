@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
 function Sidebar() {
-    // console.log(history.location.pathname);
     const [active, setActive] = useState(0);
-
     return <div className="sidebar">
         <div className="head">
             <MusicNoteIcon style={{ fontSize: "180%" }} />
@@ -15,9 +13,16 @@ function Sidebar() {
         <ul className="sidebarList">
             {SidebarData.map((val, key) => {
                 return (
-                    <Link onClick={() => setActive(key)} key={key} to={val.link} style={{ textDecoration: 'none' }}>
+                    <Link onClick={() => setActive(key)} key={key}
+                        to={{
+                            pathname: val.link,
+                            state: {
+                                artist: " ",
+                                name: " ",
+                            }
+                        }}
+                        style={{ textDecoration: 'none' }}>
                         <li key={key} className="rows"
-                        // onClick={side} id={active ? "active" : ""}
                         >
                             <div
                                 style={{

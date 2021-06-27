@@ -10,6 +10,7 @@ import Login from "./Login";
 import LoginButton from "../components/LoginButton";
 import Register from "./Register";
 import ArtistDetail from '../components/ArtistDetail';
+import Liked from "./Liked";
 
 function App() {
   return <div className="flex-container" style={{ height: "100vh" }}>
@@ -45,6 +46,8 @@ function App() {
         <Route path="/details" component={Details}>
         </Route>
         <Route path="/ArtistDetail" component={ArtistDetail}>
+        </Route>
+        <Route path="/likedsongs" component={Liked}>
         </Route>
       </Switch>
     </Router>

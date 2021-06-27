@@ -1,48 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import Row from './Row';
-import Color from "color-thief-react";
-import axios from 'axios';
-import { data as songData } from './Songs';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { data } from '../components/Songs';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Color from "color-thief-react";
+import Row from '../components/Row';
 import Loader from "react-loader-spinner";
-import {useSongStore} from './Store';
 
-function Details(props) {
-    const songName = useSongStore(state => state.song)
-    const [songs, setsong] = useState([{
-        artists: "",
+
+function Liked(props) {
+
+    const info = props.location.state;
+    const [like, setLike] = useState([{
+        user_id: "",
         name: "",
-        year: 0,
+        artist: "",
     }]);
-    useEffect(() => {
+    useEffect(async () => {
         axios({
-            method: "POST",
-            data:{
-                "number" : 20,
-            },
+            method: "GET",
             withCredentials: true,
-            url: "http://localhost:8000/api/recommendsongs",
+            url: "http://localhost:8000/api/likedsongs",
         }).then((res) => {
-            setsong(res.data.songs);
+            setLike(res.data);
+            console.log(res.data)
         });
     }, []);
-    useEffect(() => {
-        axios({
-            method: "POST",
-            data: {
-                name: info.name,
-                duration: 80,
-            },
-            withCredentials: true,
-            url: "http://localhost:8000/api/songheard",
-        }).then((res) => {
-            console.log(res.data.message);
-        });
-    }, [songName]);
-    const info = props.location.state;
-    let pic = info.image;
-    let artist = info.artist.replace("[", '').replace("]", '').replaceAll("'", '');
+    const pic = info.name === " " ?  like[0].name : info.name;
+    const image = data[pic] + ".jpg";
     return <div style={{
         overflowY: "scroll",
         overflowX: "hidden",
@@ -50,7 +35,7 @@ function Details(props) {
         fontSize: "3rem",
         background: "#1E1E1E",
     }}>
-        <Color src={pic} crossOrigin="anonymous" format="hex">
+        <Color src={`./Songs/${image}`} format="hex">
             {({ data, loading }) => {
                 if (loading) return <Loader
                     type="Bars"
@@ -69,6 +54,7 @@ function Details(props) {
                         fontSize: "3rem",
                         height: "auto",
                         backgroundImage: `linear-gradient(to bottom right, ${data}, #000000)`,
+
                     }}>
                         <div style={{
                             display: "flex",
@@ -76,27 +62,26 @@ function Details(props) {
                             padding: "20px",
                         }}>
                             <div className="detail" style={{
-                                // backgroundImage: `url("${pic}")`,
+                                backgroundImage: `url("./Songs/${image}")`,
                             }}>
-                            <img src={pic} alt="image" width="100%" height="100%" ></img>
                             </div>
                             <div className="detail_1">
                                 <h1 style={{
                                     color: "#ffffff",
                                     fontSize: "60%",
                                     fontWeight: "500"
-                                }}>{info.name}</h1>
+                                }}>{pic}</h1>
                                 <p style={{
                                     fontSize: "30%",
                                     color: "#ffffff"
-                                }}>{artist}</p>
+                                }}>{info.artist}</p>
                             </div>
                         </div>
                         <div className="list">
                             <h3 style={{
                                 color: "#aca4a4",
                                 paddingLeft: "20px"
-                            }}>Up Next</h3>
+                            }}>Liked Songs</h3>
 
                             <div className="flex-container" style={{
                                 width: "95%",
@@ -134,21 +119,23 @@ function Details(props) {
                             <div>
 
                                 {
-                                    songs.map((val, index) => {
+                                    like.map((val, index) => {
 
                                         return (
                                             <Link
                                                 to={{
-                                                    pathname: "/details",
+                                                    pathname: "/likedsongs",
                                                     state: {
-                                                        artist: val.artists,
+                                                        artist: val.artist,
                                                         name: val.name,
-                                                        image: songData[val.name],
                                                     }
                                                 }} style={{
                                                     textDecoration: "none",
                                                 }}>
-                                                <Row id={index} name={val.name} artist={val.artists.replace("[", '').replace("]", '').replaceAll("'", '')} />
+                                                <Row id={index} name={val.name} 
+                                                artist={val.artist.replace("[", '').replace("]", '').replaceAll("'", '')}
+                                                like = {true} 
+                                                />
                                             </Link>
                                         )
                                     })
@@ -163,4 +150,4 @@ function Details(props) {
     </div>
 }
 
-export default Details;
+export default Liked;
