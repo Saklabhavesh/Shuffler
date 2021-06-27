@@ -1,6 +1,21 @@
 # Shuffler
 Web Music Player
 
+## Getting Started
+
+### React frontend
+
+> npm start
+
+### Node Backend
+
+> npm run dev
+
+### Flask 
+
+> python -m flask run
+
+
 ![Image ](https://github.com/Saklabhavesh/Shuffler/blob/master/Client/public/Screenshots/home.png)
 
 ![Image ](https://github.com/Saklabhavesh/Shuffler/blob/master/Client/public/Screenshots/login.png)
