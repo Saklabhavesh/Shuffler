@@ -35,11 +35,19 @@ This is a cross platform application with a React frontend and Node backend with
 
 ![Image ](https://github.com/chintan-27/Shuffler-Music/blob/main/Client/public/Screenshots/song3.png)
 
+### Artists
+
 ![Image ](https://github.com/chintan-27/Shuffler-Music/blob/main/Client/public/Screenshots/arijit.png)
 
 ![Image ](https://github.com/chintan-27/Shuffler-Music/blob/main/Client/public/Screenshots/loader.png)
 
+### User Created PlayList
+
 ![Image ](https://github.com/chintan-27/Shuffler-Music/blob/main/Client/public/Screenshots/Screenshot%20(33).png)
+
+### Liked Songs
+
+![Image ](https://github.com/Saklabhavesh/Shuffler/blob/master/Client/public/Screenshots/Screenshot%20(34).png)
 
 ## This is our App-UI using React Native
 
